@@ -5,10 +5,13 @@ from .models import *
 
 class ProductAdmin(admin.ModelAdmin):
     change_form_template = 'custom_admin/change_form.html'
-    #exclude = ('features',)
 
 
-admin.site.register(Category)
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ("name", "slug")
+    list_display_links = ("name",)
+
 admin.site.register(CartProduct)
 admin.site.register(Cart)
 admin.site.register(Customer)

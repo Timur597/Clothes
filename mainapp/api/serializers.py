@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from ..models import Category, Product, Customer, Order, CartProduct, Cart
 
-
 class CategorySerializer(serializers.ModelSerializer):
     name = serializers.CharField(required=True)
     slug = serializers.SlugField()
@@ -38,6 +37,13 @@ class CartProductSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class CartSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = Cart
+        fields = '__all__'
+
+
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
@@ -50,3 +56,5 @@ class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
         fields = '__all__'
+
+

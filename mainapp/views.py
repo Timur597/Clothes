@@ -222,7 +222,7 @@ class LoginView(CartMixin, View):
 
     def get(self, request, *args, **kwargs):
         form = LoginForm(request.POST or None)
-        categories =Category.objects.all()
+        categories = Category.objects.all()
         context = {
             'form': form,
             'categories': categories,

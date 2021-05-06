@@ -1,14 +1,14 @@
 from collections import OrderedDict
 from rest_framework.response import Response
-from rest_framework.generics import ListAPIView, RetrieveAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListAPIView,  ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.filters import SearchFilter
 from rest_framework.pagination import PageNumberPagination
-from .serializers import CategorySerializer, BaseProductSerializer, CustomerSerializer, CartProductSerializer
-from ..models import Category, Product, Customer, CartProduct
+from .serializers import CategorySerializer, BaseProductSerializer, CustomerSerializer, CartProductSerializer, CartSerializers, OrderSerializer
+from ..models import Category, Product, Customer, CartProduct, Cart, Order
 
 
 class ProductPagination(PageNumberPagination):
-    page_size = 2
+    page_size = 5
     page_size_query_param = 'page_size'
     max_page_size = 10
 
@@ -52,3 +52,13 @@ class CustomersListApiView(ListAPIView):
 class CartProductListApiView(ListAPIView):
     serializer_class = CartProductSerializer
     queryset = CartProduct.objects.all()
+
+
+class CartListApiView(ListAPIView):
+    serializer_class = CartSerializers
+    queryset = Cart.objects.all()
+
+
+class OrderListApiView(ListAPIView):
+    serializer_class = OrderSerializer
+    queryset = Order.objects.all()
